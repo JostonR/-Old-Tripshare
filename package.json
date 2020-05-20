@@ -1,0 +1,22 @@
+{
+  "name": "project-x",
+  "version": "1.0.0",
+  "description": "",
+  "main": "x.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JostonR/MRideshare.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JostonR/MRideshare/issues"
+  },
+  "homepage": "https://github.com/JostonR/MRideshare#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
