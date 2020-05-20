@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const mysql = require('mysql');
 
 app.get("/", (req, res) =>{
     console.log("Responding to root route");
@@ -8,4 +9,4 @@ app.get("/", (req, res) =>{
 
 app.listen(3000, () => {
     console.log("Server is listening");
-});
+}); 
