@@ -67,6 +67,7 @@ app.post("/signup", (req, res) => {
             return;
         }
         else{
+            console.log("user created!");
             res.send("new user created");
         }
     });
