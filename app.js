@@ -10,9 +10,9 @@ app.use(body_parser.urlencoded({extended: false}));
 function get_connection(){
     
     return mysql.createConnection({
-        host: '127.0.0.1',
-        user:'root',
-        password:'Anthony99',
+        host: '127.0.0.1:3306',
+        user:'username',
+        password:'password',
         database: 'database1'
     });
 };
@@ -29,14 +29,14 @@ app.listen(3000, () => {
 }); 
 
 app.get("/login", (req, res)  =>{
-    console.log("fetching user with username: " + req.params.id);
 
     const connection = get_connection();
-    
+    console.log("connection passed maybe?");
     const user_username = req.body.user_username;
     const user_password = req.body.user_password;
-    const query_string = "SELECT password FROM users WHERE username = ?"
-    connection.query(query_string, [username], (err, results, fields) =>{
+    console.log("fetching user with username: " + req.body.user_username);
+    const query_string = "SELECT password FROM users WHERE username = ?";
+    connection.query(query_string, [user_username], (err, results, fields) =>{
         console.log("authenticating");
 
         if(err){
@@ -46,6 +46,7 @@ app.get("/login", (req, res)  =>{
         }
 
         console.log("inserted a new user");
+        res.send("success!");
         //need some response
     });
 
@@ -57,7 +58,9 @@ app.post("/signup", (req, res) => {
     const user_username = req.body.create_username;
     const user_password = req.body.create_password;
     const query_string = "INSERT INTO users (username, password) VALUES (?, ?)";
-    get_connection().query(query_string, [user_username, user_password], (err, results, fields) =>{
+    const connection = get_connection();
+    console.log("checking if valid");
+    connection.query(query_string, [user_username, user_password], (err, results, fields) =>{
         if(err){
             console.log("error");
             res.sendStatus(500);
