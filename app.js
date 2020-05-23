@@ -10,8 +10,8 @@ app.use(body_parser.urlencoded({extended: false}));
 function get_connection(){
     
     return mysql.createConnection({
-        host: '127.0.0.1:3306',
-        user:'username',
+        host: 'localhost',
+        user:'root',
         password:'password',
         database: 'database1'
     });
@@ -32,25 +32,25 @@ app.get("/login", (req, res)  =>{
 
     const connection = get_connection();
     console.log("connection passed maybe?");
-    const user_username = req.body.user_username;
-    const user_password = req.body.user_password;
-    console.log("fetching user with username: " + req.body.user_username);
+    const user_username = req.body.login_username;
+    const user_password = req.body.login_password;
+    console.log("fetching user with username: " + req.body.login_username);
     const query_string = "SELECT password FROM users WHERE username = ?";
     connection.query(query_string, [user_username], (err, results, fields) =>{
         console.log("authenticating");
 
         if(err){
-            console.log("error");
+            console.log("error" + err + " error");
             res.sendStatus(500);
+            res.end();
             return;
         }
 
-        console.log("inserted a new user");
+        console.log("fetched new user");
         res.send("success!");
         //need some response
     });
 
-    res.end();
 });
 
 app.post("/signup", (req, res) => {
@@ -87,3 +87,4 @@ app.get("/user", (req, res) =>{
         res.send("hello");
     });
 });
+
