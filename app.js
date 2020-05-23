@@ -38,7 +38,6 @@ app.get("/login", (req, res)  =>{
     const query_string = "SELECT password FROM users WHERE username = ?";
     connection.query(query_string, [user_username], (err, results, fields) =>{
         console.log("authenticating");
-
         if(err){
             console.log("error" + err + " error");
             res.sendStatus(500);
@@ -59,7 +58,7 @@ app.post("/signup", (req, res) => {
     const user_password = req.body.create_password;
     const query_string = "INSERT INTO users (username, password) VALUES (?, ?)";
     const connection = get_connection();
-    console.log("checking if valid");
+    console.log("trying to register: " + user_username);
     connection.query(query_string, [user_username, user_password], (err, results, fields) =>{
         if(err){
             console.log("error");
