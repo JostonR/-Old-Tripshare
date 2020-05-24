@@ -22,15 +22,18 @@
     </form>
 
     <h2>Sign Up</h2>
-    <form>
+    <form action = "/insert" method = "post">
         <div>
             <label>umich email</label>
-            <input>
+            <input name = "create_username">
         </div>
         <div>
             <label>Password</label>
-            <input>
+            <input name = "create_password">
         </div>
+        <div>
+            <label>time</label>
+            <input type = "time" name = "create_time">
         <button>Login</button>
     </form>
 </body>
