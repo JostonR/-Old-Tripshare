@@ -99,6 +99,7 @@ app.get("/init", (req, res)=>{
         else{
           console.log("success");
         }
+<<<<<<< HEAD
     })
     query_string = "create database mrideshare;";
     connection.query(query_string, (err, results, fields)=>{
@@ -152,6 +153,26 @@ app.get("/init", (req, res)=>{
           }
       })
 })
+=======
+    });
+});
+
+app.get("/user", (req, res) =>{
+    console.log("listing connections");
+    const connection = get_connection();
+    const user_name = req.body.db_test;
+
+    const query_string = "SELECT * FROM users WHERE username = Joston99";
+    connection.query(query_string, [user_name], (err, rows, fields) =>{
+        if(err){
+            console.log("error");
+            res.sendStatus(500);
+            return;
+        }
+        res.send("hello");
+    });
+});
+>>>>>>> parent of da4fc61... deleted testing users route because database connection was successful
 
 app.listen(3000, () => {
     console.log("Server is listening");
