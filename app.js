@@ -17,18 +17,6 @@ function get_connection(){
     });
 };
 
-function get_selected_option(selected_item){
-    var opt;
-    for(var i = 0, len = selected_item.length; i < len; i++){
-        opt = selected_item.options[i];
-        if(opt.selected === true){
-            break;
-        }
-    }
-    return opt;
-};
-
-
 app.get("/", (req, res) =>{
     console.log("Responding to root route");
     res.send("hello");
@@ -91,15 +79,17 @@ app.post("/schedule", (req, res) => {
     //const month = get_selected_option(req.body.month);
    // const day = get_selected_option(req.body.day);
     const year = "2020";
-    const time = req.body.time;
+    const date = req.body.date;
+    const hour = req.body.time.substring(0, 2);
+    const min = req.body.time.substring(3,5);
 
-    console.log(street_num);
-    console.log(street_addr);
-    console.log(zipcode);
-    console.log(airline);
-    //console.log(month);
-   // console.log(year);
-    console.log(time);
+    const date_time = date + " " + hour + ":" + min;
+
+    const connection = get_connection();
+
+    res.send("trip scheduled");
 });
+
+
 
 
