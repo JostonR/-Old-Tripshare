@@ -1,5 +1,23 @@
 const express = require('express');
 const app = express();
+const mysql = require('mysql');
+
+const body_parser = require('body-parser');
+
+app.use(express.static('./pages'));
+app.use(body_parser.urlencoded({extended: false}));
+
+function get_connection(){
+
+    return mysql.createConnection({
+        host: 'localhost',
+        user:'root',
+        password:'password',
+        database: 'database1'
+    });
+};
+
+
 
 const body_parser = require('body-parser');
 app.use(body_parser.urlencoded({extended: false}));
@@ -26,7 +44,7 @@ function get_connection(){
 app.get("/", (req, res) =>{
     console.log("Responding to root route");
     res.send("hello");
-})
+});
 
 app.get("/login", (req, res) =>{
     //res.send("login page tbd");
