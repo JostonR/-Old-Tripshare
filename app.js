@@ -17,6 +17,16 @@ function get_connection(){
     });
 };
 
+function get_selected_option(selected_item){
+    var opt;
+    for(var i = 0, len = selected_item.length; i < len; i++){
+        opt = selected_item.options[i];
+        if(opt.selected === true){
+            break;
+        }
+    }
+    return opt;
+};
 
 
 app.get("/", (req, res) =>{
@@ -70,6 +80,26 @@ app.post("/signup", (req, res) => {
             res.send("new user created");
         }
     });
+});
+
+app.post("/schedule", (req, res) => {
+    console.log("scheduling a trip");
+    const street_num = req.body.street_num;
+    const street_addr = req.body.street_addr;
+    const zipcode = req.body.zipcode;
+    const airline = req.body.airline;
+    //const month = get_selected_option(req.body.month);
+   // const day = get_selected_option(req.body.day);
+    const year = "2020";
+    const time = req.body.time;
+
+    console.log(street_num);
+    console.log(street_addr);
+    console.log(zipcode);
+    console.log(airline);
+    //console.log(month);
+   // console.log(year);
+    console.log(time);
 });
 
 
